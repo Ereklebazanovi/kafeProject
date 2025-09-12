@@ -2,13 +2,11 @@ import {
   collection,
   doc,
   getDocs,
-  getDoc,
   addDoc,
   updateDoc,
   deleteDoc,
   query,
   where,
-  orderBy,
   onSnapshot
 } from 'firebase/firestore';
 import { db } from './firebase';

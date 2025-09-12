@@ -14,7 +14,7 @@ export const validateImageFile = (file: File): string | null => {
 };
 
 export const resizeImage = (file: File, maxWidth: number, maxHeight: number, quality: number = 0.8): Promise<Blob> => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d')!;
     const img = new Image();
@@ -30,9 +30,16 @@ export const resizeImage = (file: File, maxWidth: number, maxHeight: number, qua
 
       // Draw and compress
       ctx.drawImage(img, 0, 0, newWidth, newHeight);
-      canvas.toBlob(resolve, 'image/jpeg', quality);
+      canvas.toBlob((blob) => {
+        if (blob) {
+          resolve(blob);
+        } else {
+          reject(new Error('Failed to create blob'));
+        }
+      }, 'image/jpeg', quality);
     };
 
+    img.onerror = () => reject(new Error('Failed to load image'));
     img.src = URL.createObjectURL(file);
   });
 };
