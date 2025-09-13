@@ -65,26 +65,36 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-6 pb-4">
-            <div className="bg-black/90 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-yellow-500/20">
-              <div className="flex flex-col space-y-3">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.href}
-                    to={item.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`px-4 py-3 rounded-lg font-medium transition-all duration-300 text-center ${
-                      isActive(item.href) 
-                        ? 'bg-yellow-500 text-black shadow-lg' 
-                        : 'text-white hover:bg-yellow-500/20 hover:text-yellow-400'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+          <div className="md:hidden absolute top-full left-0 right-0 z-40">
+            <div className="bg-black/95 backdrop-blur-xl mx-4 rounded-xl shadow-2xl border border-yellow-500/30">
+              <div className="p-4">
+                <div className="grid grid-cols-1 gap-2">
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`px-4 py-3 rounded-lg font-medium transition-all duration-300 text-center ${
+                        isActive(item.href) 
+                          ? 'bg-yellow-500 text-black shadow-lg' 
+                          : 'text-white hover:bg-yellow-500/20 hover:text-yellow-400'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
+        )}
+
+        {/* Backdrop for mobile menu */}
+        {isMenuOpen && (
+          <div 
+            className="md:hidden fixed inset-0 bg-black/50 z-40"
+            onClick={() => setIsMenuOpen(false)}
+          />
         )}
       </nav>
     </header>

@@ -1,21 +1,92 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, Star, Award, Calendar, Users } from 'lucide-react';
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [videoDisabled, setVideoDisabled] = useState(false);
+
+  useEffect(() => {
+    // Check user preference from localStorage
+    const savedPreference = localStorage.getItem('disableVideo');
+    if (savedPreference === 'true') {
+      setVideoDisabled(true);
+      return;
+    }
+
+    // Check if device is mobile or has slow connection
+    const checkDevice = () => {
+      const isMobileDevice = window.innerWidth < 768;
+      const connection = (navigator as any).connection;
+      const isSlowConnection = connection && (
+        connection.effectiveType === 'slow-2g' ||
+        connection.effectiveType === '2g' ||
+        connection.effectiveType === '3g'
+      );
+
+      setIsMobile(isMobileDevice);
+      // Only load video on desktop with good connection and user hasn't disabled it
+      setShouldLoadVideo(!isMobileDevice && !isSlowConnection && !videoDisabled);
+    };
+
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    return () => window.removeEventListener('resize', checkDevice);
+  }, [videoDisabled]);
+
+  const toggleVideo = () => {
+    const newState = !videoDisabled;
+    setVideoDisabled(newState);
+    localStorage.setItem('disableVideo', newState.toString());
+    if (!newState && !isMobile) {
+      setShouldLoadVideo(true);
+    } else {
+      setShouldLoadVideo(false);
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Main Video Background */}
-      <div className="absolute inset-0">
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
+      {/* Fallback Background Image - loads immediately */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`
+        }}
+      />
+
+      {/* Video Background - conditional loading */}
+      {shouldLoadVideo && (
+        <div className="absolute inset-0">
+          <video
+            className="w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            onLoadedData={(e) => {
+              e.currentTarget.style.opacity = '1';
+            }}
+            onError={(e) => {
+              // Hide video if it fails to load, fallback image will show
+              e.currentTarget.style.display = 'none';
+            }}
+          >
+            <source src="https://www.pexels.com/download/video/2583490/" type="video/mp4" />
+          </video>
+        </div>
+      )}
+
+      {/* Video Control Button */}
+      <div className="absolute top-4 right-4 z-20">
+        <button
+          onClick={toggleVideo}
+          className="bg-black/50 backdrop-blur-sm rounded-full px-3 py-2 text-white text-xs hover:bg-black/70 transition-all duration-300 border border-white/20"
+          title={shouldLoadVideo ? 'ვიდეოს გამორთვა' : 'ვიდეოს ჩართვა'}
         >
-          <source src="https://www.pexels.com/download/video/2583490/" type="video/mp4" />
-        </video>
+          {shouldLoadVideo ? '🎥 ვიდეო ჩართულია' : '📷 სურათის რეჟიმი'}
+        </button>
       </div>
 
       {/* Sophisticated gradient overlay */}
