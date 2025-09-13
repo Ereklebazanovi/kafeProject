@@ -94,7 +94,7 @@ const MenuCategory = ({ category, items }: MenuCategoryProps) => {
       >
         <div className="text-center bg-white rounded-xl p-4 shadow-sm">
           <div className="text-2xl font-bold text-primary">
-            {items.filter(item => item.isChefRecommended).length}
+            {items.filter(item => item.isChefRecommended || false).length}
           </div>
           <div className="text-sm text-gray">შეფის რეკომენდაცია</div>
         </div>

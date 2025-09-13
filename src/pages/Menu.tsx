@@ -20,7 +20,7 @@ const Menu = () => {
 
   const filteredItems = menuItems.filter(item => {
     const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.nameEn.toLowerCase().includes(searchTerm.toLowerCase());
+                         (item.nameEn || '').toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });

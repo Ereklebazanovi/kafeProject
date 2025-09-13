@@ -22,7 +22,7 @@ const MenuManager = () => {
 
   const filteredItems = menuItems.filter(item => {
     const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.nameEn.toLowerCase().includes(searchTerm.toLowerCase());
+                         (item.nameEn || '').toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -58,7 +58,7 @@ const MenuManager = () => {
         // Add new menu item to Firestore
         const { addMenuItem } = await import('../../services/firestore');
         const newItem = { ...editingItem };
-        delete newItem.id; // Remove empty id for new items
+        delete (newItem as any).id; // Remove empty id for new items
         await addMenuItem(newItem);
         console.log('New item created successfully');
       } else {
@@ -74,7 +74,7 @@ const MenuManager = () => {
       await refreshMenuItems();
     } catch (error) {
       console.error('Error saving item:', error);
-      alert('შეცდომა: ' + error.message);
+      alert('შეცდომა: ' + (error as Error).message);
     }
   };
 
@@ -88,7 +88,7 @@ const MenuManager = () => {
         await refreshMenuItems();
       } catch (error) {
         console.error('Error deleting item:', error);
-        alert('შეცდომა: ' + error.message);
+        alert('შეცდომა: ' + (error as Error).message);
       }
     }
   };
@@ -185,7 +185,7 @@ const MenuManager = () => {
                   <td className="p-6">
                     <div>
                       <div className="font-semibold text-primary">{item.name}</div>
-                      <div className="text-sm text-gray">{item.nameEn}</div>
+                      <div className="text-sm text-gray">{item.nameEn || ''}</div>
                     </div>
                   </td>
                   <td className="p-6">

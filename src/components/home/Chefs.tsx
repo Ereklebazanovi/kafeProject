@@ -3,7 +3,7 @@ import { FaInstagram, FaFacebook, FaUtensils } from 'react-icons/fa';
 import { useChefs } from '../../hooks/useFirestore';
 
 const Chefs = () => {
-  const { chefs, loading, error } = useChefs();
+  const { chefs, loading } = useChefs();
 
   if (loading) {
     return (
@@ -105,7 +105,7 @@ const Chefs = () => {
 
         {/* Chefs Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {chefs.map((chef, index) => (
+          {chefs.map((chef) => (
             <div
               key={chef.id}
               className="group bg-white/95 backdrop-blur-md rounded-3xl overflow-hidden shadow-2xl hover:shadow-accent/25 transition-all duration-500 border border-white/20 hover:-translate-y-3 hover:scale-105"

@@ -1,4 +1,4 @@
-import { FaHeart, FaLeaf, FaUsers, FaAward, FaCrown } from 'react-icons/fa';
+import { FaHeart, FaLeaf, FaUsers, FaAward } from 'react-icons/fa';
 
 const About = () => {
   const features = [

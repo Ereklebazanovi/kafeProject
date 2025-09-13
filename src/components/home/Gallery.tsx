@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaImage, FaUtensils, FaUsers, FaCalendarAlt, FaCrown } from 'react-icons/fa';
 import { useGallery } from '../../hooks/useFirestore';
 
 const Gallery = () => {
-  const { galleryItems, loading, error } = useGallery();
+  const { galleryItems, loading } = useGallery();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const categories = [
