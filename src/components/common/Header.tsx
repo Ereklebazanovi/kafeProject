@@ -21,32 +21,32 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white/98 backdrop-blur-xl shadow-2xl border-b-4 border-accent sticky top-0 z-50">
-      <nav className="container mx-auto px-6 py-5">
+    <header className="bg-black/95 backdrop-blur-xl shadow-2xl border-b-2 border-yellow-500/30 sticky top-0 z-50">
+      <nav className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-4 group">
-            <div className="w-14 h-14 bg-gradient-to-br from-accent to-warm rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-2xl border-2 border-gold">
-              <span className="text-white font-display font-black text-2xl">კ</span>
+            <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-all duration-300 shadow-lg">
+              <span className="text-black font-bold text-xl">კ</span>
             </div>
             <div>
-              <h1 className="text-2xl md:text-3xl font-display font-black text-primary">
+              <h1 className="text-xl md:text-2xl font-bold text-white">
                 კაფე ალუბანი
               </h1>
-              <p className="text-sm text-accent hidden md:block font-bold tracking-wide">GEORGIAN RESTAURANT & CAFÉ</p>
+              <p className="text-xs text-yellow-400 hidden md:block font-medium">GEORGIAN RESTAURANT & CAFÉ</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 bg-gray-light/80 rounded-2xl p-2">
+          <div className="hidden md:flex items-center space-x-1">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                className={`px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 ${
+                className={`px-5 py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
                   isActive(item.href) 
-                    ? 'bg-accent text-white shadow-2xl transform -translate-y-0.5' 
-                    : 'text-primary hover:bg-white hover:text-accent hover:shadow-lg hover:-translate-y-0.5'
+                    ? 'bg-yellow-500 text-black shadow-lg' 
+                    : 'text-white hover:bg-yellow-500/20 hover:text-yellow-400'
                 }`}
               >
                 {item.name}
@@ -57,26 +57,26 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-4 bg-accent text-white rounded-2xl hover:bg-warm hover:scale-110 hover:rotate-90 transition-all duration-300 shadow-2xl"
+            className="md:hidden p-3 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400 transition-all duration-300 shadow-lg"
           >
-            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-8 pb-6">
-            <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border-4 border-accent/20">
-              <div className="flex flex-col space-y-4">
+          <div className="md:hidden mt-6 pb-4">
+            <div className="bg-black/90 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-yellow-500/20">
+              <div className="flex flex-col space-y-3">
                 {navigation.map((item) => (
                   <Link
                     key={item.href}
                     to={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`px-6 py-4 rounded-2xl font-bold text-lg transition-all duration-300 text-center shadow-xl ${
+                    className={`px-4 py-3 rounded-lg font-medium transition-all duration-300 text-center ${
                       isActive(item.href) 
-                        ? 'bg-accent text-white shadow-2xl transform -translate-y-1' 
-                        : 'bg-gray-light text-primary hover:bg-gold hover:text-white hover:-translate-y-1'
+                        ? 'bg-yellow-500 text-black shadow-lg' 
+                        : 'text-white hover:bg-yellow-500/20 hover:text-yellow-400'
                     }`}
                   >
                     {item.name}
