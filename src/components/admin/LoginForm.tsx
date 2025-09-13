@@ -105,14 +105,14 @@ const LoginForm = () => {
         </motion.button>
       </form>
 
-      {/* Demo Credentials */}
+      {/* Admin Credentials */}
       <div className="mt-8 p-4 bg-background rounded-lg">
-        <h3 className="text-sm font-semibold text-primary mb-2">Demo მონაცემები:</h3>
+        <h3 className="text-sm font-semibold text-primary mb-2">შესვლის მონაცემები:</h3>
         <div className="text-xs text-gray space-y-1">
           <p><strong>Email:</strong> admin@alubani.ge</p>
-          <p><strong>Password:</strong> demo123</p>
-          <p className="text-warning mt-2">
-            ⚠️ ეს არის demo ვერსია. რეალურ პროექტში გამოიყენეთ უსაფრთხო ავტორიზაცია.
+          <p><strong>Password:</strong> Alubani2025!</p>
+          <p className="text-success mt-2">
+            ✅ რეალური Firebase Authentication
           </p>
         </div>
       </div>

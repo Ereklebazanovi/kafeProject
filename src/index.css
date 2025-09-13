@@ -1,19 +1,36 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+Georgian:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+Georgian:wght@300;400;500;600;700&display=swap');
 
 @theme {
-  --color-primary: #8B4513;
-  --color-secondary: #D2691E;
-  --color-accent: #CD853F;
-  --color-background: #FFF8DC;
-  --color-text: #2F1B14;
-  --color-white: #FFFFFF;
-  --color-gray: #6B7280;
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
+  /* Bold, solid and eye-catching color palette */
+  --color-primary: #1a202c;
+  --color-secondary: #2d3748;
+  --color-accent: #e53e3e;
+  --color-background: #f8fafc;
+  --color-white: #ffffff;
+  --color-warm: #d97706;
+  --color-gold: #f59e0b;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  
+  /* Gray scale with depth */
+  --color-gray: #64748b;
+  --color-gray-light: #f1f5f9;
+  --color-gray-dark: #0f172a;
 
-  --font-family-serif: 'Playfair Display', serif;
-  --font-family-sans: 'Inter', sans-serif;
-  --font-family-georgian: 'Noto Sans Georgian', sans-serif;
+  /* Typography */
+  --font-family-sans: 'Inter', 'Noto Sans Georgian', system-ui, sans-serif;
+  --font-family-display: 'Poppins', 'Noto Sans Georgian', system-ui, sans-serif;
+}
+
+/* Global styles */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  line-height: 1.6;
 }

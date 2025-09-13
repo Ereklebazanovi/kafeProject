@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
+import AboutUs from './pages/AboutUs';
+import GalleryPage from './pages/GalleryPage';
 import Admin from './pages/Admin';
 import './App.css'
 
@@ -11,6 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>

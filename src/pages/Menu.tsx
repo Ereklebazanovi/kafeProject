@@ -3,17 +3,12 @@ import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import SearchBar from '../components/menu/SearchBar';
 import MenuCategory from '../components/menu/MenuCategory';
-// import { useMenuItems } from '../hooks/useFirestore';
-import { mockMenuItems } from '../data/mockData';
+import { useMenuItems } from '../hooks/useFirestore';
 
 const Menu = () => {
-  // const { menuItems: firebaseItems, loading } = useMenuItems();
+  const { menuItems, loading, error } = useMenuItems();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  
-  // Use mock data for now (Firebase disabled for faster loading)
-  const menuItems = mockMenuItems;
-  const loading = false;
 
   const categories = [
     { id: 'all', name: 'ყველა', nameEn: 'All' },
@@ -64,28 +59,69 @@ const Menu = () => {
         />
         
         <div className="mt-8">
-          {categories.map(category => {
-            if (selectedCategory !== 'all' && category.id !== selectedCategory) return null;
-            
-            const categoryItems = filteredItems.filter(item => 
-              category.id === 'all' || item.category === category.id
-            );
-            
-            if (categoryItems.length === 0) return null;
-            
-            return (
-              <MenuCategory
-                key={category.id}
-                category={category}
-                items={categoryItems}
-              />
-            );
-          })}
-          
-          {filteredItems.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-xl text-gray">მოძებნილი კერძები ვერ მოიძებნა</p>
+          {/* Error State */}
+          {error && (
+            <div className="text-center py-16">
+              <div className="text-6xl mb-4">⚠️</div>
+              <h3 className="text-xl font-serif font-bold text-error mb-2">
+                შეცდომა მენიუს ჩატვირთვისას
+              </h3>
+              <p className="text-gray">{error}</p>
             </div>
+          )}
+
+          {/* Empty State */}
+          {!loading && !error && menuItems.length === 0 && (
+            <div className="text-center py-16">
+              <div className="text-8xl mb-6">🍽️</div>
+              <h3 className="text-2xl font-serif font-bold text-primary mb-4">
+                მენიუ ჯერ არ არის დამატებული
+              </h3>
+              <p className="text-lg text-gray mb-6">
+                ჩვენი შეფები მუშაობენ ახალ კერძებზე
+              </p>
+              <div className="bg-background p-6 rounded-xl max-w-md mx-auto">
+                <p className="text-sm text-gray">
+                  💡 <strong>რჩევა:</strong> Admin panel-დან შეგიძლიათ დაამატოთ კერძები
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Menu Categories */}
+          {!loading && !error && menuItems.length > 0 && (
+            <>
+              {categories.map(category => {
+                if (selectedCategory !== 'all' && category.id !== selectedCategory) return null;
+                
+                const categoryItems = filteredItems.filter(item => 
+                  category.id === 'all' || item.category === category.id
+                );
+                
+                if (categoryItems.length === 0) return null;
+                
+                return (
+                  <MenuCategory
+                    key={category.id}
+                    category={category}
+                    items={categoryItems}
+                  />
+                );
+              })}
+              
+              {/* Search Results Empty */}
+              {filteredItems.length === 0 && (
+                <div className="text-center py-12">
+                  <div className="text-4xl mb-4">🔍</div>
+                  <h3 className="text-xl font-serif font-bold text-gray mb-2">
+                    მოძებნილი კერძები ვერ მოიძებნა
+                  </h3>
+                  <p className="text-gray">
+                    სცადეთ სხვა საძიებო ტერმინი ან კატეგორია
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </main>

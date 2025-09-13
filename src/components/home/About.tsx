@@ -1,128 +1,123 @@
-import { motion } from 'framer-motion';
-import { FaHeart, FaLeaf, FaUsers, FaAward } from 'react-icons/fa';
+import { FaHeart, FaLeaf, FaUsers, FaAward, FaCrown } from 'react-icons/fa';
 
 const About = () => {
   const features = [
     {
-      icon: <FaHeart className="text-2xl" />,
+      icon: <FaHeart className="text-3xl" />,
       title: 'ტრადიციული რეცეპტები',
       description: 'ჩვენ ვიყენებთ ძველ ქართულ რეცეპტებს, რომლებიც თაობებით გადმოგვრეს'
     },
     {
-      icon: <FaLeaf className="text-2xl" />,
+      icon: <FaLeaf className="text-3xl" />,
       title: 'ეკოლოგიურად სუფთა',
-      description: 'ყველა ინგრედიენტი ისუნთებს ადგილობრივი ფერმერებისგან'
+      description: 'ყველა ინგრედიენტი მოვიპოვებთ ადგილობრივი ფერმერებისგან'
     },
     {
-      icon: <FaUsers className="text-2xl" />,
+      icon: <FaUsers className="text-3xl" />,
       title: 'ოჯახური ატმოსფერო',
       description: 'ჩვენთან ყოველი სტუმარი ოჯახის წევრივით იგრძნობს თავს'
     },
     {
-      icon: <FaAward className="text-2xl" />,
+      icon: <FaAward className="text-3xl" />,
       title: 'ხარისხიანი სერვისი',
       description: 'ჩვენი გუნდი მუშაობს თქვენი კმაყოფილებისთვის'
     }
   ];
 
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section id="about" className="relative py-24 overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`
+        }}
+      />
+      
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/75"></div>
+      
+      <div className="relative z-10 container mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-3 bg-accent/90 backdrop-blur-sm text-white px-6 py-3 rounded-full font-semibold mb-8 shadow-2xl">
+            <FaCrown className="text-gold" size={18} />
+            <span>ჩვენს შესახებ</span>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
           {/* Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-6">
+          <div>
+            <h2 className="text-5xl md:text-6xl font-display font-black text-white mb-8">
               ჩვენი ისტორია
             </h2>
             
-            <p className="text-lg text-gray mb-6 leading-relaxed">
-              კაფე "ალუბანი" დაარსდა 2015 წელს მარტივი იდეით - შეგვექმნა ადგილი, 
-              სადაც ტრადიციული ქართული სამზარეულო შეხვდებოდა თანამედროვე ატმოსფეროს.
-            </p>
-            
-            <p className="text-lg text-gray mb-8 leading-relaxed">
-              ჩვენი სახელი "ალუბანი" მომდინარეობს ქართული სიტყვებისგან "ალუბალი" 
-              და "ბანი" - ადგილი სადაც იზრდება ყველაზე ტკბილი ალუბალი. 
-              ასევე ჩვენც ვზრდით ყველაზე ტკბილ გემოებს ჩვენს კაფეში.
-            </p>
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 mb-10 shadow-2xl">
+              <p className="text-xl md:text-2xl text-primary leading-relaxed font-medium mb-6">
+                კაფე "ალუბანი" დაარსდა 2015 წელს მარტივი იდეით - შეგვექმნა ადგილი, 
+                სადაც ტრადიციული ქართული სამზარეულო შეხვდებოდა თანამედროვე ატმოსფეროს.
+              </p>
+              
+              <p className="text-lg text-gray leading-relaxed">
+                ჩვენი სახელი "ალუბანი" მომდინარეობს ქართული სიტყვებისგან "ალუბალი" 
+                და "ბანი" - ადგილი სადაც იზრდება ყველაზე ტკბილი ალუბალი. 
+                <span className="text-accent font-bold"> ასევე ჩვენც ვზრდით ყველაზე ტკბილ გემოებს</span> ჩვენს კაფეში.
+              </p>
+            </div>
 
-            <motion.div
-              className="grid sm:grid-cols-2 gap-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            <div className="grid sm:grid-cols-2 gap-6">
               {features.map((feature, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary flex-shrink-0">
+                <div key={index} className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-2xl hover:shadow-accent/25 hover:-translate-y-1 transition-all duration-300">
+                  <div className="bg-accent text-white p-4 rounded-2xl w-fit mb-4 shadow-lg">
                     {feature.icon}
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-primary mb-2">{feature.title}</h3>
-                    <p className="text-sm text-gray">{feature.description}</p>
-                  </div>
+                  <h3 className="font-bold text-primary mb-3 text-lg">{feature.title}</h3>
+                  <p className="text-gray leading-relaxed">{feature.description}</p>
                 </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          {/* Image Section */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <div className="relative bg-gradient-to-br from-accent/20 to-secondary/20 rounded-3xl p-8 min-h-96">
-              {/* Placeholder for cafe image */}
-              <div className="bg-white/80 rounded-2xl p-8 text-center">
-                <div className="text-6xl text-primary mb-4">☕</div>
-                <h3 className="text-xl font-serif font-bold text-primary mb-2">
-                  კაფე "ალუბანი"
-                </h3>
-                <p className="text-gray">
-                  სადაც ტრადიცია შეხვდება თანამედროვეობას
-                </p>
+          {/* Stats Section */}
+          <div className="relative">
+            {/* Main Stats Card */}
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-10 shadow-2xl text-center mb-8">
+              <div className="w-20 h-20 bg-gradient-to-br from-accent to-warm rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-2xl">
+                <span className="text-3xl text-white font-display font-black">კ</span>
               </div>
               
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 bg-secondary text-white p-4 rounded-full">
-                <FaHeart size={24} />
-              </div>
-              <div className="absolute -bottom-4 -left-4 bg-accent text-white p-4 rounded-full">
-                <FaLeaf size={24} />
+              <h3 className="text-3xl font-display font-black text-primary mb-4">
+                კაფე "ალუბანი"
+              </h3>
+              
+              <p className="text-xl text-accent font-bold mb-8">
+                სადაც ტრადიცია შეხვდება თანამედროვეობას
+              </p>
+
+              {/* Key Achievement */}
+              <div className="bg-accent/10 rounded-2xl p-6 mb-6">
+                <div className="text-4xl font-black text-accent mb-2">2015</div>
+                <div className="text-lg font-bold text-primary">წლიდან ვამარცვლებთ ტრადიციას</div>
               </div>
             </div>
 
-            {/* Stats */}
-            <motion.div
-              className="grid grid-cols-3 gap-4 mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              <div className="text-center bg-primary/5 p-4 rounded-xl">
-                <div className="text-2xl font-bold text-primary">8+</div>
-                <div className="text-sm text-gray">წლიანი გამოცდილება</div>
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 text-center shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                <div className="text-3xl font-black text-accent mb-2">50+</div>
+                <div className="text-sm font-bold text-primary uppercase tracking-wide">ავთენტური კერძი</div>
               </div>
-              <div className="text-center bg-secondary/5 p-4 rounded-xl">
-                <div className="text-2xl font-bold text-secondary">50+</div>
-                <div className="text-sm text-gray">კერძის ვარიაცია</div>
+              <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 text-center shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                <div className="text-3xl font-black text-gold mb-2">5★</div>
+                <div className="text-sm font-bold text-primary uppercase tracking-wide">ექსკლუზივური შეფასება</div>
               </div>
-              <div className="text-center bg-accent/5 p-4 rounded-xl">
-                <div className="text-2xl font-bold text-accent">1000+</div>
-                <div className="text-sm text-gray">კმაყოფილი კლიენტი</div>
-              </div>
-            </motion.div>
-          </motion.div>
+            </div>
+
+            {/* Decorative Elements */}
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-gold/20 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-accent/20 rounded-full blur-xl"></div>
+          </div>
         </div>
       </div>
     </section>

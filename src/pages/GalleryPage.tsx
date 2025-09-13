@@ -1,19 +1,17 @@
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
-import Hero from '../components/home/Hero';
-import QRPreview from '../components/home/QRPreview';
+import Gallery from '../components/home/Gallery';
 
-const Home = () => {
+const GalleryPage = () => {
   return (
     <div className="min-h-screen">
       <Header />
       <main>
-        <Hero />
-        <QRPreview />
+        <Gallery />
       </main>
       <Footer />
     </div>
   );
 };
 
-export default Home;
+export default GalleryPage;

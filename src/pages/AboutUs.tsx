@@ -1,19 +1,19 @@
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
-import Hero from '../components/home/Hero';
-import QRPreview from '../components/home/QRPreview';
+import About from '../components/home/About';
+import Chefs from '../components/home/Chefs';
 
-const Home = () => {
+const AboutUs = () => {
   return (
     <div className="min-h-screen">
       <Header />
       <main>
-        <Hero />
-        <QRPreview />
+        <About />
+        <Chefs />
       </main>
       <Footer />
     </div>
   );
 };
 
-export default Home;
+export default AboutUs;
