@@ -37,31 +37,26 @@ const About = () => {
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/75"></div>
       
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-3 bg-accent/90 backdrop-blur-sm text-white px-6 py-3 rounded-full font-semibold mb-8 shadow-2xl">
-            <FaCrown className="text-gold" size={18} />
-            <span>ჩვენს შესახებ</span>
-          </div>
-        </div>
+      
 
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-20 items-start">
           {/* Text Content */}
-          <div>
+          <div className="flex flex-col h-full">
             <h2 className="text-5xl md:text-6xl font-display font-black text-white mb-8">
               ჩვენი ისტორია
             </h2>
-            
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 mb-10 shadow-2xl">
+
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 mb-10 shadow-2xl flex-grow">
               <p className="text-xl md:text-2xl text-primary leading-relaxed font-medium mb-6">
-                კაფე "ალუბანი" დაარსდა 2015 წელს მარტივი იდეით - შეგვექმნა ადგილი, 
+                კაფე "ალუბანი" დაარსდა 2015 წელს მარტივი იდეით - შეგვექმნა ადგილი,
                 სადაც ტრადიციული ქართული სამზარეულო შეხვდებოდა თანამედროვე ატმოსფეროს.
               </p>
-              
+
               <p className="text-lg text-gray leading-relaxed">
-                ჩვენი სახელი "ალუბანი" მომდინარეობს ქართული სიტყვებისგან "ალუბალი" 
-                და "ბანი" - ადგილი სადაც იზრდება ყველაზე ტკბილი ალუბალი. 
+                ჩვენი სახელი "ალუბანი" მომდინარეობს ქართული სიტყვებისგან "ალუბალი"
+                და "ბანი" - ადგილი სადაც იზრდება ყველაზე ტკბილი ალუბალი.
                 <span className="text-accent font-bold"> ასევე ჩვენც ვზრდით ყველაზე ტკბილ გემოებს</span> ჩვენს კაფეში.
               </p>
             </div>
@@ -79,39 +74,14 @@ const About = () => {
             </div>
           </div>
 
-          {/* Stats Section */}
-          <div className="relative">
-            {/* Main Stats Card */}
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-10 shadow-2xl text-center mb-8">
-              <div className="w-20 h-20 bg-gradient-to-br from-accent to-warm rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-2xl">
-                <span className="text-3xl text-white font-display font-black">კ</span>
-              </div>
-              
-              <h3 className="text-3xl font-display font-black text-primary mb-4">
-                კაფე "ალუბანი"
-              </h3>
-              
-              <p className="text-xl text-accent font-bold mb-8">
-                სადაც ტრადიცია შეხვდება თანამედროვეობას
-              </p>
-
-              {/* Key Achievement */}
-              <div className="bg-accent/10 rounded-2xl p-6 mb-6">
-                <div className="text-4xl font-black text-accent mb-2">2015</div>
-                <div className="text-lg font-bold text-primary">წლიდან ვამარცვლებთ ტრადიციას</div>
-              </div>
-            </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 text-center shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                <div className="text-3xl font-black text-accent mb-2">50+</div>
-                <div className="text-sm font-bold text-primary uppercase tracking-wide">ავთენტური კერძი</div>
-              </div>
-              <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 text-center shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                <div className="text-3xl font-black text-gold mb-2">5★</div>
-                <div className="text-sm font-bold text-primary uppercase tracking-wide">ექსკლუზივური შეფასება</div>
-              </div>
+          {/* Image Section */}
+          <div className="relative mt-22">
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 shadow-2xl">
+              <img
+                src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg"
+                alt="კაფე ალუბანი ინტერიერი"
+                className="w-full h-[500px] rounded-2xl object-cover"
+              />
             </div>
 
             {/* Decorative Elements */}
