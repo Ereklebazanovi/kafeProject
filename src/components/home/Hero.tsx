@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronRight, Star, Award, Calendar, Users } from 'lucide-react';
 
 const Hero = () => {
