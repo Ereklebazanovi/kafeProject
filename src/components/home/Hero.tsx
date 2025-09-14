@@ -7,13 +7,6 @@ const Hero = () => {
   const [videoDisabled, setVideoDisabled] = useState(false);
 
   useEffect(() => {
-    // Check user preference from localStorage
-    const savedPreference = localStorage.getItem('disableVideo');
-    if (savedPreference === 'true') {
-      setVideoDisabled(true);
-      return;
-    }
-
     // Check if device is mobile or has slow connection
     const checkDevice = () => {
       const isMobileDevice = window.innerWidth < 768;
@@ -25,14 +18,38 @@ const Hero = () => {
       );
 
       setIsMobile(isMobileDevice);
-      // Only load video on desktop with good connection and user hasn't disabled it
-      setShouldLoadVideo(!isMobileDevice && !isSlowConnection && !videoDisabled);
+
+      // Check user preference from localStorage
+      const savedPreference = localStorage.getItem('disableVideo');
+      const userDisabledVideo = savedPreference === 'true';
+      setVideoDisabled(userDisabledVideo);
+
+      // Default: enable video on desktop with good connection, unless user disabled it
+      const shouldShow = !isMobileDevice && !isSlowConnection && !userDisabledVideo;
+      setShouldLoadVideo(shouldShow);
+
+
     };
 
     checkDevice();
     window.addEventListener('resize', checkDevice);
     return () => window.removeEventListener('resize', checkDevice);
-  }, [videoDisabled]);
+  }, []);
+
+  // Separate effect for when video is toggled
+  useEffect(() => {
+    if (!isMobile) {
+      const connection = (navigator as any).connection;
+      const isSlowConnection = connection && (
+        connection.effectiveType === 'slow-2g' ||
+        connection.effectiveType === '2g' ||
+        connection.effectiveType === '3g'
+      );
+      setShouldLoadVideo(!videoDisabled && !isSlowConnection);
+    } else {
+      setShouldLoadVideo(false);
+    }
+  }, [videoDisabled, isMobile]);
 
   const toggleVideo = () => {
     const newState = !videoDisabled;
@@ -78,16 +95,6 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Video Control Button */}
-      <div className="absolute top-4 right-4 z-20">
-        <button
-          onClick={toggleVideo}
-          className="bg-black/50 backdrop-blur-sm rounded-full px-3 py-2 text-white text-xs hover:bg-black/70 transition-all duration-300 border border-white/20"
-          title={shouldLoadVideo ? 'ვიდეოს გამორთვა' : 'ვიდეოს ჩართვა'}
-        >
-          {shouldLoadVideo ? '🎥 ვიდეო ჩართულია' : '📷 სურათის რეჟიმი'}
-        </button>
-      </div>
 
       {/* Sophisticated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/60"></div>
